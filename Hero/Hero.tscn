@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Hero/assets/thing.png" type="Texture" id=1]
 [ext_resource path="res://Hero/Hero.cs" type="Script" id=2]
+[ext_resource path="res://Hero/Spell.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -51,7 +52,9 @@ radius = 72.5809
 height = 47.9993
 
 [node name="Hero" type="KinematicBody2D"]
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
+Spell = ExtResource( 3 )
 
 [node name="Animation" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
@@ -63,4 +66,7 @@ shape = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 4, 4 )
+
+[node name="SpellStart" type="Position2D" parent="."]
+position = Vector2( 103.238, 4.24267 )

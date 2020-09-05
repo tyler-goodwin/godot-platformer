@@ -1,20 +1,21 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/textures/platform.png" type="Texture" id=1]
+[ext_resource path="res://Platform/platform.png" type="Texture" id=1]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 23.5281
+radius = 23.0635
 height = 526.218
 
 [node name="StaticBody2D" type="StaticBody2D" groups=[
 "platform",
 ]]
+scale = Vector2( 2, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 offset = Vector2( 0, 50 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 2 )
+position = Vector2( 2.55972e-06, 1.29289 )
 rotation = 1.5708
 shape = SubResource( 1 )

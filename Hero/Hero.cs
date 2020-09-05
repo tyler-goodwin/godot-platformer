@@ -4,6 +4,7 @@ using System;
 public class Hero : KinematicBody2D
 {
   static string ANIMATION = "Animation";
+  static string SPELL_POSITION = "SpellStart";
 
   static class InputDirection
   {
@@ -12,6 +13,7 @@ public class Hero : KinematicBody2D
     public const string UP = "ui_up";
     public const string DOWN = "ui_down";
     public const string JUMP = "ui_accept";
+    public const string ATTACK = "ui_attack";
   }
 
   static class Animation
@@ -25,12 +27,14 @@ public class Hero : KinematicBody2D
     LEFT, RIGHT
   }
 
-  [Export] public float MoveSpeed = 800;
+  [Export] public PackedScene Spell;
 
-  [Export] public float GravityForce = 100;
-  [Export] public float MaxFallSpeed = 1500;
+  [Export] public float MoveSpeed = 1600;
 
-  [Export] public float JumpForce = 200;
+  [Export] public float GravityForce = 200;
+  [Export] public float MaxFallSpeed = 2500;
+
+  [Export] public float JumpForce = 450;
   [Export] public int MaxJumpForceApplications = 8;
 
   private Vector2 _velocity = new Vector2();
@@ -50,6 +54,7 @@ public class Hero : KinematicBody2D
   public override void _PhysicsProcess(float delta)
   {
     UpdateVelocity();
+    IsAttackPressed();
     DoGravity();
     JumpHandler();
     MoveAndSlide(_velocity, new Vector2(0, -1));
@@ -57,7 +62,6 @@ public class Hero : KinematicBody2D
 
   public void UpdateVelocity()
   {
-
     _velocity.x = 0;
     if (Input.IsActionPressed(InputDirection.RIGHT))
       _velocity.x += MoveSpeed;
@@ -86,10 +90,7 @@ public class Hero : KinematicBody2D
   private void DoGravity()
   {
     if (IsOnFloor())
-    {
       _velocity.y = 0;
-      return;
-    }
 
     if (_velocity.y < MaxFallSpeed)
     {
@@ -114,6 +115,28 @@ public class Hero : KinematicBody2D
     {
       if (_jumpCount++ < MaxJumpForceApplications)
         _velocity.y -= JumpForce;
+    }
+  }
+
+  private void IsAttackPressed()
+  {
+    if (Input.IsActionJustPressed(InputDirection.ATTACK))
+    {
+      var spell = (Spell)Spell.Instance();
+      var startLocation = GetNode<Position2D>(SPELL_POSITION).Position;
+
+      if (_direction == Direction.RIGHT)
+      {
+        spell.TravelRight();
+      }
+      else
+      {
+        spell.TravelLeft();
+        startLocation.x *= -1;
+      }
+
+      Owner.AddChild(spell);
+      spell.Position = ToGlobal(startLocation);
     }
   }
 }
