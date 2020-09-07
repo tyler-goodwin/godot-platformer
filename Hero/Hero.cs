@@ -31,11 +31,11 @@ public class Hero : KinematicBody2D
 
   [Export] public float MoveSpeed = 1600;
 
-  [Export] public float GravityForce = 200;
-  [Export] public float MaxFallSpeed = 2500;
+  [Export] public float GravityForce = 100;
+  [Export] public float MaxFallSpeed = 2000;
 
-  [Export] public float JumpForce = 450;
-  [Export] public int MaxJumpForceApplications = 8;
+  [Export] public float JumpForce = 650;
+  [Export] public int MaxJumpForceApplications = 7;
 
   private Vector2 _velocity = new Vector2();
   private Direction _direction = Direction.RIGHT;
@@ -109,12 +109,22 @@ public class Hero : KinematicBody2D
 
   private void JumpHandler()
   {
-    if (IsOnFloor()) _jumpCount = 0;
+    if (IsOnFloor())
+    {
+      _jumpCount = 0;
+    }
+    if (IsOnCeiling())
+    {
+      _velocity.y = 1; // Set to 1 so we move off the ceiling
+      _jumpCount = MaxJumpForceApplications;
+    }
 
     if (Input.IsActionPressed(InputDirection.JUMP))
     {
       if (_jumpCount++ < MaxJumpForceApplications)
+      {
         _velocity.y -= JumpForce;
+      }
     }
   }
 

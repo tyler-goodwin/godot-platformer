@@ -54,7 +54,8 @@ public class Spell : Area2D
 
     if (body.IsInGroup("enemies"))
     {
-      //
+      // TODO: Add enemy subclass
+      ((Enemy)body).Die();
     }
     var sprite = GetNode<AnimatedSprite>("AnimatedSprite");
     sprite.Play("collision");

@@ -9,7 +9,6 @@ height = 526.218
 [node name="StaticBody2D" type="StaticBody2D" groups=[
 "platform",
 ]]
-scale = Vector2( 2, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
