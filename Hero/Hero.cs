@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Direction = Types.Direction;
 
 public class Hero : KinematicBody2D
 {
@@ -22,17 +23,12 @@ public class Hero : KinematicBody2D
     public const string IDLE = "idle";
   }
 
-  enum Direction
-  {
-    LEFT, RIGHT
-  }
-
   [Export] public PackedScene Spell;
 
   [Export] public float MoveSpeed = 1600;
 
   [Export] public float GravityForce = 100;
-  [Export] public float MaxFallSpeed = 2000;
+  [Export] public float MaxFallSpeed = 3500;
 
   [Export] public float JumpForce = 650;
   [Export] public int MaxJumpForceApplications = 7;
@@ -40,6 +36,9 @@ public class Hero : KinematicBody2D
   private Vector2 _velocity = new Vector2();
   private Direction _direction = Direction.RIGHT;
   private int _jumpCount = 0;
+  private int _jumpCooldown = 0;
+
+  private JumpStateMachine _jumper = new JumpStateMachine();
 
   public override void _Ready()
   {
@@ -93,9 +92,7 @@ public class Hero : KinematicBody2D
       _velocity.y = 0;
 
     if (_velocity.y < MaxFallSpeed)
-    {
       _velocity.y += GravityForce;
-    }
   }
 
   private void SetAnimation(string animation)
@@ -109,23 +106,8 @@ public class Hero : KinematicBody2D
 
   private void JumpHandler()
   {
-    if (IsOnFloor())
-    {
-      _jumpCount = 0;
-    }
-    if (IsOnCeiling())
-    {
-      _velocity.y = 1; // Set to 1 so we move off the ceiling
-      _jumpCount = MaxJumpForceApplications;
-    }
-
-    if (Input.IsActionPressed(InputDirection.JUMP))
-    {
-      if (_jumpCount++ < MaxJumpForceApplications)
-      {
-        _velocity.y -= JumpForce;
-      }
-    }
+    var jumpButtonPressed = Input.IsActionPressed(InputDirection.JUMP);
+    _velocity.y += _jumper.GetVelocityChange(jumpButtonPressed, _velocity.y, IsOnFloor(), IsOnCeiling());
   }
 
   private void IsAttackPressed()

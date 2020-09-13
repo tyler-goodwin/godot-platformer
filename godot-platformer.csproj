@@ -62,6 +62,7 @@
     <Compile Include="Hero\Hero.cs" />
     <Compile Include="Hero\Spell.cs" />
     <Compile Include="lib\Types.cs" />
+    <Compile Include="lib\JumpStateMachine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
