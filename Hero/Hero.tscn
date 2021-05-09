@@ -75,13 +75,12 @@ Spell = ExtResource( 3 )
 [node name="Animation" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 8 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 4, 4 )
 

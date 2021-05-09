@@ -28,12 +28,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="enemies\Enemy.cs" />
-    <Compile Include="enemies\ShroomEnemy.cs" />
-    <Compile Include="Hero\Hero.cs" />
-    <Compile Include="Hero\Spell.cs" />
-    <Compile Include="lib\Types.cs" />
-    <Compile Include="lib\JumpStateMachine.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="**\*.cs" />
   </ItemGroup>
 </Project>

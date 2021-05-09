@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/GUI.cs" type="Script" id=1]
+
+[node name="GUI" type="MarginContainer"]
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bars" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 58.0
+margin_bottom = 34.0
+
+[node name="HealthBar" type="HBoxContainer" parent="Bars"]
+margin_right = 38.0
+margin_bottom = 14.0
+
+[node name="HealthCount" type="MarginContainer" parent="Bars/HealthBar"]
+margin_right = 38.0
+margin_bottom = 14.0
+
+[node name="Background" type="ColorRect" parent="Bars/HealthBar/HealthCount"]
+margin_right = 38.0
+margin_bottom = 14.0
+color = Color( 0.223529, 0.207843, 0.207843, 1 )
+
+[node name="Container" type="HBoxContainer" parent="Bars/HealthBar/HealthCount"]
+margin_right = 38.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bars/HealthBar/HealthCount/Container"]
+margin_right = 18.0
+margin_bottom = 14.0
+text = "HP"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Number" type="Label" parent="Bars/HealthBar/HealthCount/Container"]
+margin_left = 22.0
+margin_right = 38.0
+margin_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -39,6 +39,9 @@ public class Hero : KinematicBody2D
   [Export] public int MaxHealth = 10;
   [Export] public float DamageCooldown = 1.0F;
 
+  [Signal]
+  public delegate void HealthChanged(int newValue);
+
   private Vector2 _velocity = new Vector2();
   private Direction _direction = Direction.RIGHT;
 
@@ -104,7 +107,7 @@ public class Hero : KinematicBody2D
   private void TakeDamage() {
     if(_canTakeDamage) {
       _canTakeDamage = false;
-      _currentHealth -= 1;
+      UpdateHealth(_currentHealth - 1);
       GetNode<Timer>(DAMAGE_COOLDOWN_TIMER).Start();
       GetNode<AnimationPlayer>(EFFECTS_PLAYER).Play(Effects.DAMAGE_TAKEN);
 
@@ -112,6 +115,11 @@ public class Hero : KinematicBody2D
         GD.Print("DEAD!");
       }
     }
+  }
+
+  private void UpdateHealth(int newValue) {
+    _currentHealth = newValue;
+    EmitSignal(nameof(HealthChanged), newValue);
   }
 
   private void UpdateDirection()
