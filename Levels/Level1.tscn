@@ -72,4 +72,3 @@ position = Vector2( 1012.44, 1362.25 )
 position = Vector2( 595.178, -1177.41 )
 scale = Vector2( 1, 1 )
 GravityForce = 150.0
-JumpForce = 500.0

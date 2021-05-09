@@ -6,6 +6,8 @@ public class Hero : KinematicBody2D
 {
   static string ANIMATION = "Animation";
   static string SPELL_POSITION = "SpellStart";
+  static string EFFECTS_PLAYER = "EffectsPlayer";
+  static string DAMAGE_COOLDOWN_TIMER = "DamageCooldownTimer";
 
   static class InputDirection
   {
@@ -23,6 +25,10 @@ public class Hero : KinematicBody2D
     public const string IDLE = "idle";
   }
 
+  static class Effects {
+    public const string DAMAGE_TAKEN = "DamageTaken";
+  }
+
   [Export] public PackedScene Spell;
 
   [Export] public float MoveSpeed = 1600;
@@ -30,18 +36,21 @@ public class Hero : KinematicBody2D
   [Export] public float GravityForce = 100;
   [Export] public float MaxFallSpeed = 3500;
 
-  [Export] public float JumpForce = 650;
-  [Export] public int MaxJumpForceApplications = 7;
+  [Export] public int MaxHealth = 10;
+  [Export] public float DamageCooldown = 1.0F;
 
   private Vector2 _velocity = new Vector2();
   private Direction _direction = Direction.RIGHT;
-  private int _jumpCount = 0;
-  private int _jumpCooldown = 0;
+
+  private int _currentHealth = 10;
+  private bool _canTakeDamage = true;
 
   private JumpStateMachine _jumper = new JumpStateMachine();
 
   public override void _Ready()
   {
+    GetNode<Timer>(DAMAGE_COOLDOWN_TIMER).Connect("timeout", this, "EnableTakingDamage");
+    _currentHealth = MaxHealth;
   }
 
   public override void _Process(float delta)
@@ -57,6 +66,18 @@ public class Hero : KinematicBody2D
     DoGravity();
     JumpHandler();
     MoveAndSlide(_velocity, new Vector2(0, -1));
+
+    var totalCollisions = GetSlideCount();
+    for(var i = 0; i < totalCollisions; ++i) {
+      var collision = GetSlideCollision(i);
+      if(collision.Collider.IsClass("KinematicBody2D"))
+      {
+        var collider = (KinematicBody2D) collision.Collider;
+        if(collider.IsInGroup("enemies")) {
+          TakeDamage();
+        }
+      }
+    }
   }
 
   public void UpdateVelocity()
@@ -74,6 +95,23 @@ public class Hero : KinematicBody2D
       SetAnimation(Animation.RUN);
     else
       SetAnimation(Animation.IDLE);
+  }
+
+  public void EnableTakingDamage() {
+    _canTakeDamage = true;
+  }
+
+  private void TakeDamage() {
+    if(_canTakeDamage) {
+      _canTakeDamage = false;
+      _currentHealth -= 1;
+      GetNode<Timer>(DAMAGE_COOLDOWN_TIMER).Start();
+      GetNode<AnimationPlayer>(EFFECTS_PLAYER).Play(Effects.DAMAGE_TAKEN);
+
+      if(_currentHealth < 0) {
+        GD.Print("DEAD!");
+      }
+    }
   }
 
   private void UpdateDirection()

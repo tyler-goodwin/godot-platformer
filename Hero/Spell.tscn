@@ -21,32 +21,32 @@ region = Rect2( 120, 0, 60, 45 )
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 300, 0, 60, 45 )
+region = Rect2( 180, 0, 60, 45 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 360, 0, 60, 45 )
+region = Rect2( 240, 0, 60, 45 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 420, 0, 60, 45 )
+region = Rect2( 300, 0, 60, 45 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 480, 0, 60, 45 )
+region = Rect2( 360, 0, 60, 45 )
 
 [sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 180, 0, 60, 45 )
+region = Rect2( 420, 0, 60, 45 )
 
 [sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 60, 45 )
+region = Rect2( 480, 0, 60, 45 )
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
@@ -55,15 +55,15 @@ animations = [ {
 "name": "start",
 "speed": 15.0
 }, {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
-"loop": false,
-"name": "collision",
-"speed": 30.0
-}, {
-"frames": [ SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ) ],
 "loop": true,
 "name": "traveling",
 "speed": 15.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "collision",
+"speed": 30.0
 } ]
 
 [sub_resource type="CircleShape2D" id=11]
@@ -82,9 +82,9 @@ Speed = 2500.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 10 )
 animation = "traveling"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
+
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Hero/assets/thing.png" type="Texture" id=1]
 [ext_resource path="res://Hero/Hero.cs" type="Script" id=2]
@@ -51,6 +51,22 @@ animations = [ {
 radius = 72.5809
 height = 47.9993
 
+[sub_resource type="Animation" id=9]
+resource_name = "DamageTaken"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animation:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="Hero" type="KinematicBody2D"]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -71,3 +87,9 @@ zoom = Vector2( 4, 4 )
 
 [node name="SpellStart" type="Position2D" parent="."]
 position = Vector2( 103.238, 4.24267 )
+
+[node name="EffectsPlayer" type="AnimationPlayer" parent="."]
+anims/DamageTaken = SubResource( 9 )
+
+[node name="DamageCooldownTimer" type="Timer" parent="."]
+wait_time = 1.5
