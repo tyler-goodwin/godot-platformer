@@ -7,9 +7,15 @@ public class Enemy : KinematicBody2D
 {
   [Export] public float Speed = 350;
   [Export] public float GravityStrength = 500;
+  [Export] public int MaxHealth = 10;
 
   protected Direction _direction = Types.Direction.LEFT;
   protected bool _dying = false;
+  protected int _currentHealth;
+
+  public Enemy() {
+    _currentHealth = MaxHealth;
+  }
 
   public override void _Process(float delta)
   {
@@ -25,6 +31,14 @@ public class Enemy : KinematicBody2D
       velocity.x -= Speed;
     }
     MoveAndSlide(velocity);
+  }
+
+  public void Attacked(int damage) {
+    _currentHealth -= damage;
+
+    if(_currentHealth <= 0) {
+      Die();
+    }
   }
 
   public void Die()

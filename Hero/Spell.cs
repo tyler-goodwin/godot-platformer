@@ -6,6 +6,7 @@ public class Spell : Area2D
 {
 
   [Export] public float Speed = 1000;
+  [Export] public int Damage = 1;
 
   public Direction TravelDirection { get; set; }
 
@@ -38,7 +39,7 @@ public class Spell : Area2D
 
     if (body.IsInGroup("enemies"))
     {
-      ((Enemy)body).Die();
+      ((Enemy)body).Attacked(Damage);
     }
     var sprite = GetNode<AnimatedSprite>("AnimatedSprite");
     sprite.Play("collision");

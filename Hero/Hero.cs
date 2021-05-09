@@ -107,7 +107,12 @@ public class Hero : KinematicBody2D
   private void JumpHandler()
   {
     var jumpButtonPressed = Input.IsActionPressed(InputDirection.JUMP);
-    _velocity.y += _jumper.GetVelocityChange(jumpButtonPressed, _velocity.y, IsOnFloor(), IsOnCeiling());
+    _velocity.y += _jumper.GetVelocityChange(
+      jumpButtonPressed,
+      _velocity.y,
+      IsOnFloor(),
+      IsOnCeiling()
+    );
   }
 
   private void IsAttackPressed()
