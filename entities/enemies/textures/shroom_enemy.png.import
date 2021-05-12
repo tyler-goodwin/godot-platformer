@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Village Concept.png-58d7b7ed68cc70c7e8e1745ea7b4c32b.stex"
+path="res://.import/shroom_enemy.png-ca8c6af97d45748dd37e837e0d55cfee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Village Concept.png"
-dest_files=[ "res://.import/Village Concept.png-58d7b7ed68cc70c7e8e1745ea7b4c32b.stex" ]
+source_file="res://entities/enemies/textures/shroom_enemy.png"
+dest_files=[ "res://.import/shroom_enemy.png-ca8c6af97d45748dd37e837e0d55cfee.stex" ]
 
 [params]
 

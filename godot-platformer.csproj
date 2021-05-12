@@ -6,8 +6,6 @@
     <AssemblyName>godot-platformer</AssemblyName>
     <GodotProjectGeneratorVersion>1.0.0.0</GodotProjectGeneratorVersion>
     <TargetFramework>net472</TargetFramework>
-    <!--The following properties were overridden during migration to prevent errors.
-    Enabling them may require other manual changes to the project and its files.-->
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
@@ -28,6 +26,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" />
+    <Compile Include="entities\**\*.cs" />
+    <Compile Include="lib\*.cs" />
   </ItemGroup>
 </Project>

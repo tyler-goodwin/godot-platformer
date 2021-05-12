@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/thing.png-497bb00167db2f1d17f2f8ebba5d426b.stex"
+path="res://.import/spell.png-5af3262c4f9dd56038191ea1eeae9b9a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hero/assets/thing.png"
-dest_files=[ "res://.import/thing.png-497bb00167db2f1d17f2f8ebba5d426b.stex" ]
+source_file="res://entities/assets/textures/spell.png"
+dest_files=[ "res://.import/spell.png-5af3262c4f9dd56038191ea1eeae9b9a.stex" ]
 
 [params]
 

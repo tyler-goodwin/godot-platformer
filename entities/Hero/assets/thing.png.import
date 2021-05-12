@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/platform.png-c9fb45a754188be9b9d8d82a9fec4eb2.stex"
+path="res://.import/thing.png-e1c0f23cfd3cee33f095c7387ca34c13.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Platform/platform.png"
-dest_files=[ "res://.import/platform.png-c9fb45a754188be9b9d8d82a9fec4eb2.stex" ]
+source_file="res://entities/Hero/assets/thing.png"
+dest_files=[ "res://.import/thing.png-e1c0f23cfd3cee33f095c7387ca34c13.stex" ]
 
 [params]
 

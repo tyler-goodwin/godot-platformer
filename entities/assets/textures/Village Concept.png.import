@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spell.png-38f0d60a6ada29601d2a7d889d3237dc.stex"
+path="res://.import/Village Concept.png-a6e6a4fe8503a6b72325ddf117ed12fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/spell.png"
-dest_files=[ "res://.import/spell.png-38f0d60a6ada29601d2a7d889d3237dc.stex" ]
+source_file="res://entities/assets/textures/Village Concept.png"
+dest_files=[ "res://.import/Village Concept.png-a6e6a4fe8503a6b72325ddf117ed12fe.stex" ]
 
 [params]
 
