@@ -21,7 +21,6 @@ class JumpStateMachine
 
   public float GetVelocityChange(bool jumpButtonPressed, float currentVelocity, bool isOnFloor, bool isOnCeiling)
   {
-    System.Console.WriteLine("Current state: ", _state.ToString());
     switch (_state)
     {
       case State.READY_TO_JUMP:
