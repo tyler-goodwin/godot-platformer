@@ -30,6 +30,16 @@ namespace MazeGenerator {
       return true;
     }
 
+    public void RemoveWall((int, int) coords, int direction) {
+      var (x, y) = coords;
+      if(!InBounds(coords)) throw new System.Exception($"Out of bounds, {x}, {y}");
+
+      var wall = GetCell(coords).Walls[direction];
+      if(wall == null) throw new System.Exception($"No wall at {x}, {y} in direction {direction}");
+
+      wall.Present = false;
+    }
+
     private void InitializeMaze() {
       for(int h = 0; h < _height; ++h) {
         for(int w = 0; w < _width; ++w) {

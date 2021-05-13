@@ -28,7 +28,6 @@
   <ItemGroup>
     <Compile Include="entities\**\*.cs" />
     <Compile Include="lib\*.cs" />
-    <Compile Include="MazeVisualizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\LevelGenerator\LevelGenerator.csproj" />
