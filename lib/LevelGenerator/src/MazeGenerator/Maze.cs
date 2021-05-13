@@ -11,7 +11,7 @@ namespace MazeGenerator {
       _width = width;
       _height = height;
 
-      Cells = new Cell[_height, _width];
+      Cells = new Cell[_width, _height];
       InitializeMaze();
     }
 
@@ -24,11 +24,9 @@ namespace MazeGenerator {
 
     public bool InBounds((int, int) coords) {
       var (x, y) = coords;
-      System.Console.WriteLine($"Checking bounds of: {x},{y}");
-
       if(x < 0 || x >= _width) return false;
       if(y < 0 || y >= _height) return false;
-      System.Console.WriteLine($"Was in bounds: {x},{y}");
+
       return true;
     }
 
@@ -47,7 +45,9 @@ namespace MazeGenerator {
 
       foreach(var direction in Directions.AllDirections) {
         var neighbour = GetCell(neighbourCoords[direction]);
-        if(neighbour == null) continue;
+        if(neighbour == null) {
+          continue;
+        }
 
         // This will result in some walls being overriden, but I don't
         // think we don't really care

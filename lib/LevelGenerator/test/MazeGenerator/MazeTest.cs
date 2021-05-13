@@ -7,7 +7,7 @@ namespace MazeGenerator.Tests {
 
     [SetUp]
     public void Setup() {
-      maze = new Maze(5, 5);
+      maze = new Maze(5, 4);
     }
 
     [Test]
@@ -17,7 +17,7 @@ namespace MazeGenerator.Tests {
         Assert.That(cell, Is.Not.Null);
         ++count;
       }
-      Assert.That(count, Is.EqualTo(25));
+      Assert.That(count, Is.EqualTo(20));
     }
   }
 }
