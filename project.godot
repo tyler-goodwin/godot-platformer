@@ -18,11 +18,6 @@ config/name="godot-platformer"
 run/main_scene="res://entities/Levels/Level1.tscn"
 config/icon="res://icon.png"
 
-[debug]
-
-settings/stdout/print_fps=true
-settings/stdout/verbose_stdout=true
-
 [display]
 
 window/dpi/allow_hidpi=true

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MazeGenerator {
   public class Maze {
     public Cell[,] Cells;
@@ -30,11 +28,11 @@ namespace MazeGenerator {
       return true;
     }
 
-    public void RemoveWall((int, int) coords, int direction) {
+    public void RemoveWall((int, int) coords, Directions.Direction direction) {
       var (x, y) = coords;
       if(!InBounds(coords)) throw new System.Exception($"Out of bounds, {x}, {y}");
 
-      var wall = GetCell(coords).Walls[direction];
+      var wall = GetCell(coords).GetWall(direction);
       if(wall == null) throw new System.Exception($"No wall at {x}, {y} in direction {direction}");
 
       wall.Present = false;
@@ -54,7 +52,7 @@ namespace MazeGenerator {
       var neighbourCoords = cell.GetNeighbourCoords();
 
       foreach(var direction in Directions.AllDirections) {
-        var neighbour = GetCell(neighbourCoords[direction]);
+        var neighbour = GetCell(neighbourCoords[(int) direction]);
         if(neighbour == null) {
           continue;
         }
@@ -62,8 +60,8 @@ namespace MazeGenerator {
         // This will result in some walls being overriden, but I don't
         // think we don't really care
         var wall = new Wall();
-        cell.Walls[direction] = wall;
-        neighbour.Walls[Directions.Opposite(direction)] = wall;
+        cell.SetWall(wall, direction);
+        neighbour.SetWall(wall, Directions.Opposite(direction));
       }
 
       Cells[x, y] = cell;
