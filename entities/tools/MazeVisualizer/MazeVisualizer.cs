@@ -13,7 +13,8 @@ public class MazeVisualizer : Node2D
 
     public override void _Ready()
     {
-        _maze = new Maze(Width, Height);
+        var generator = new MazeGenerator.Generator(Width, Height, (0, 3));
+        _maze = generator.Generate();
     }
 
     public override void _Draw()
