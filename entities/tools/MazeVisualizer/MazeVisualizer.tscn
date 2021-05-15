@@ -4,7 +4,8 @@
 
 [node name="MazeVisualizer" type="Node2D"]
 script = ExtResource( 1 )
-CellWidth = 10.0
-Width = 90
-Height = 60
+CellWidth = 40.0
+Width = 15
+Height = 9
 WallWidth = 1.0
+HorizontalBias = 0.75

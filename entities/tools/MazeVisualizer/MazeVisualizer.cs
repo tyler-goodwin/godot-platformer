@@ -8,12 +8,14 @@ public class MazeVisualizer : Node2D
     [Export] public int Width = 6;
     [Export] public int Height = 8;
     [Export] public float WallWidth = 5f;
+    [Export] public float HorizontalBias = 0.5f;
+    [Export] public int Seed = 0;
 
     private Maze _maze;
 
     public override void _Ready()
     {
-        var generator = new MazeGenerator.Generator(Width, Height, (0, 3));
+        var generator = new MazeGenerator.Generator(Width, Height, (0, 3), Seed, HorizontalBias);
         _maze = generator.Generate();
     }
 
