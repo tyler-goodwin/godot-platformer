@@ -1,10 +1,8 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 namespace MazeGenerator {
 
   using static Directions;
-
 
   public class Generator {
     private Maze _maze;
